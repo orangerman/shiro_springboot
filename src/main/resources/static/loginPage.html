@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/login/login}" method="post">
+    <input name="username" type="text"/><br>
+    <input name="password" type="password"/><br>
+    <input name="rememberMe" type="checkbox"/><br>
+    <input type="submit" value="登录"/><br><br>
+
+    <a th:href="@{/login/register}" >注册</a>
+</form>
+<p th:text="${loginerror}"></p>
+</body>
+
+<script th:inline="javascript" type="text/javascript">
+    var ctxPath1  = [[@{/}]];
+  //  alert(ctxPath1);
+    var ctxPath2 = /*[[@{/}]]*/'';
+   // alert(ctxPath2);
+    var ctxPath3=[[${#httpServletRequest.getContextPath()}]];
+  //  alert(ctxPath3);
+</script>
+</html>
