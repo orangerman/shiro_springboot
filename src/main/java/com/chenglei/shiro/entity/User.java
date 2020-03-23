@@ -2,6 +2,9 @@ package com.chenglei.shiro.entity;
 
 import javax.persistence.*;
 
+/**
+ * @author fanfan
+ */
 @Entity
 @Table(name = "t_user")
 public class User {

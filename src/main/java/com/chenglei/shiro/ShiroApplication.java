@@ -3,7 +3,10 @@ package com.chenglei.shiro;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-//@EnableTransactionManagement springboot 的事务是默认开启的
+/**
+ *  @EnableTransactionManagement springboot 的事务是默认开启的
+ * @author fanfan
+ */
 @SpringBootApplication
 public class ShiroApplication {
 

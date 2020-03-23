@@ -36,10 +36,16 @@ import org.springframework.context.annotation.DependsOn;
 import javax.servlet.Filter;
 import java.util.*;
 
+/**
+ * @author fanfan
+ */
 @Configuration
 public class IOCConfiguration {
 
-    // shiro 核心过滤器
+    /**
+     * shiro 核心过滤器
+     * @return
+     */
     @Bean(value = "shiroFilter")
     @DependsOn(value = "securityManager")
     public ShiroFilterFactoryBean shiroFilter() {
@@ -80,8 +86,8 @@ public class IOCConfiguration {
     }
 
     @Bean
-    public CookieRememberMeManager getCookieRememberMeManager(){
-        CookieRememberMeManager cookieRememberMeManager=new CookieRememberMeManager();
+    public CookieRememberMeManager getCookieRememberMeManager() {
+        CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
         cookieRememberMeManager.setCipherKey("#{T(org.apache.shiro.codec.Base64).decode('4AvVhmFLUs0KTA3Kprsdag==')}".getBytes());
         cookieRememberMeManager.setCookie(getSimpleCookie());
         return cookieRememberMeManager;
@@ -89,9 +95,9 @@ public class IOCConfiguration {
 
     @Bean
     public Cookie getSimpleCookie() {
-        SimpleCookie simpleCookie=new SimpleCookie("rememberMe");
+        SimpleCookie simpleCookie = new SimpleCookie("rememberMe");
         simpleCookie.setHttpOnly(true);
-        simpleCookie.setMaxAge(1000*3600*24*7);//2592000 30
+        simpleCookie.setMaxAge(1000 * 3600 * 24 * 7);//2592000 30
         return simpleCookie;
     }
 
@@ -132,13 +138,14 @@ public class IOCConfiguration {
         sessionManager.setGlobalSessionTimeout(1000 * 1800);
         sessionManager.setSessionListeners(Arrays.asList(getSessionListeners()));
         sessionManager.setSessionIdUrlRewritingEnabled(false);
-        sessionManager.setDeleteInvalidSessions(true);//是否开启删除无效的session对象  默认为true
+        //是否开启删除无效的session对象  默认为true
+        sessionManager.setDeleteInvalidSessions(true);
         //是否开启定时调度器进行检测过期session 默认为true
         sessionManager.setSessionValidationSchedulerEnabled(true);
         //设置session失效的扫描时间, 清理用户直接关闭浏览器造成的孤立会话 默认为 1个小时
         //设置该属性 就不需要设置 ExecutorServiceSessionValidationScheduler 底层也是默认自动调用ExecutorServiceSessionValidationScheduler
         //暂时设置为 5秒 用来测试
-        sessionManager.setSessionValidationInterval(3600*1000);
+        sessionManager.setSessionValidationInterval(3600 * 1000);
 
         sessionManager.setSessionDAO(getSessionDao());
         return sessionManager;
@@ -156,7 +163,10 @@ public class IOCConfiguration {
         return new SzydSessionListener();
     }
 
-    // realm 获取
+    /**
+     * realm的获取
+     * @return realm
+     */
     private Collection<Realm> getRealms() {
         Collection<Realm> realms = new ArrayList<Realm>();
         realms.add(getSzydRealm());

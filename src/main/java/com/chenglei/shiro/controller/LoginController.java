@@ -15,6 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+/**
+ * @author fanfan
+ */
 @Controller
 @RequestMapping("/login")
 public class LoginController {
@@ -22,7 +25,7 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
-    @RequestMapping(value="/login",method = RequestMethod.POST)
+    @RequestMapping(value="/login",method = RequestMethod.GET)
     public ModelAndView login(@RequestParam("username") String username, @RequestParam("password")String password, HttpServletRequest request){
         ModelAndView modelAndView=new ModelAndView();
         boolean result=loginService.login(username,password);
@@ -33,6 +36,7 @@ public class LoginController {
             modelAndView.setViewName("loginPage");
 
         }
+        System.out.println(modelAndView);
         return modelAndView;
     }
     @RequestMapping(value="/desktop",method = RequestMethod.GET)

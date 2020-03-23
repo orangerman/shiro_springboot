@@ -7,7 +7,10 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import java.io.IOException;
-//https://blog.csdn.net/qq_38930240/article/details/86685389
+/**
+ * @author fanfan
+ * / //https://blog.csdn.net/qq_38930240/article/details/86685389
+ */
 public class SzydOncePerRequestFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws ServletException, IOException {
